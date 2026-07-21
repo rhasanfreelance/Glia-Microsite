@@ -1,118 +1,224 @@
-# GLIA — microsite
+# GLIA — Interactive AI Concept Microsite
 
-A premium, animation-driven marketing microsite for **GLIA**, a fictional
-ambient-AI product. Built with plain HTML/CSS/JS — no framework, no build
-step, no CMS.
+> **The mind behind your machines.**
 
-## Stack
+GLIA is a premium concept microsite built to showcase modern frontend engineering, immersive storytelling, and animation-driven user experiences.
 
-- HTML5 + semantic markup, ARIA where it earns its keep
-- CSS3 (custom properties, no preprocessor)
-- Vanilla JavaScript, ES modules
-- [GSAP](https://gsap.com) + ScrollTrigger for every scroll-driven scene
-- [Lenis](https://github.com/darkroomengineering/lenis) for smooth scrolling, synced to GSAP's ticker
-- [lottie-web](https://github.com/airbnb/lottie) for the three animated illustrations
+Inspired by the visual quality of Apple, Stripe, Linear, and Awwwards-winning digital experiences, the project combines smooth scrolling, scroll-synchronized Lottie animations, and cinematic transitions into a fast, responsive, framework-free website.
 
-All four libraries load from CDN in `index.html`. There is no npm install
-and no bundler — open `index.html` through a local server and it runs.
+> **This is a fictional product concept created for portfolio and educational purposes.**
 
-## Running it locally
+---
 
-Any static file server works, e.g.:
+## Features
+
+- Award-style scrolling experience
+- GSAP + ScrollTrigger powered animations
+- Scroll-synchronized Lottie animations
+- Lenis smooth scrolling
+- Fully responsive across desktop, tablet, and mobile
+- High-performance, framework-free architecture
+- Accessible semantic HTML
+- SEO-friendly markup
+- Custom cursor and micro-interactions
+- Animated statistics and scroll progress
+- Loading screen with animated intro
+- Glassmorphism-inspired interface
+
+---
+
+## Tech Stack
+
+| Technology                      | Purpose                      |
+| ------------------------------- | ---------------------------- |
+| HTML5                           | Semantic page structure      |
+| CSS3                            | Styling, layouts, animations |
+| Vanilla JavaScript (ES Modules) | Application logic            |
+| GSAP                            | Motion & animation           |
+| ScrollTrigger                   | Scroll-based storytelling    |
+| Lottie Web                      | JSON vector animations       |
+| Lenis                           | Smooth scrolling             |
+
+No frameworks.
+
+No CMS.
+
+No build tools.
+
+No bundlers.
+
+---
+
+## Project Structure
+
+```
+glia-microsite/
+│
+├── index.html
+│
+├── css/
+│   ├── base.css
+│   ├── components.css
+│   ├── sections.css
+│   └── responsive.css
+│
+├── js/
+│   ├── main.js
+│   ├── utils.js
+│   ├── loader.js
+│   ├── cursor.js
+│   ├── navigation.js
+│   ├── scroll-animations.js
+│   ├── lottie-scenes.js
+│   ├── counters.js
+│   ├── form.js
+│   └── lenis-init.js
+│
+└── assets/
+    └── lottie/
+```
+
+---
+
+## Running Locally
+
+Because the project loads Lottie JSON files, it should be served over HTTP rather than opened directly using `file://`.
+
+Start a local server:
 
 ```bash
 python3 -m http.server 8080
-# then open http://localhost:8080
 ```
 
-Opening `index.html` directly via `file://` will break the Lottie `path:`
-fetches (blocked by CORS on `file://`) — always serve it over HTTP.
-
-## Folder structure
+Then visit:
 
 ```
-glia/
-├── index.html                 Single page, all sections
-├── css/
-│   ├── base.css                Design tokens (colors/type/spacing), reset, typography
-│   ├── components.css          Loader, cursor, nav, buttons, chips, glass cards
-│   ├── sections.css            Layout for each page section
-│   └── responsive.css          Mobile-first breakpoints + pointer/motion media queries
-├── js/
-│   ├── main.js                  Boot sequence, wires every module together
-│   ├── utils.js                  clamp/lerp/debounce/media-query helpers
-│   ├── lenis-init.js             Smooth-scroll setup, synced to GSAP ticker
-│   ├── loader.js                 Boot screen + progress simulation
-│   ├── cursor.js                 Custom cursor, magnetic buttons, click ripples
-│   ├── navigation.js             Mobile menu, scroll-spy, smooth anchors
-│   ├── lottie-scenes.js          Ambient loop + scroll-scrubbed neural network
-│   ├── scroll-animations.js      All ScrollTrigger scenes: pins, parallax, split-text
-│   ├── counters.js               Stat counter animations
-│   └── form.js                   Waitlist form (client-side only, see below)
-└── assets/
-    └── lottie/
-        ├── loader-node.json      Boot-screen mark (looping)
-        ├── ambient-particles.json Hero background particles (looping)
-        └── neural-network.json   Scroll-scrubbed reasoning visualization
+http://localhost:8080
 ```
 
-## Scroll choreography (what's driving what)
+---
 
-- **Hero** — parallax background drift + blur-out on exit, split-word intro
-  on load.
-- **Manifesto** — words brighten from 16% to 100% opacity as you scroll
-  through the section (`scroll-animations.js → initManifesto`).
-- **Capabilities** — pinned section, cards scroll horizontally as you scroll
-  vertically (`initCapabilitiesHorizontalScroll`).
-- **Visualization** — pinned section; the Lottie animation's current frame
-  is set directly from `ScrollTrigger`'s `progress` value
-  (`lottie-scenes.js → initNeuralVisualization`), so scrubbing forward,
-  backward, or stopping mid-scroll always matches the exact frame — this is
-  the fully scroll-synchronized animation called for in the brief.
-- **Device** — puck/ring intro animation, chip parallax at different speeds
-  per `data-parallax` value.
-- **Dendrite rail** (desktop only, left edge) — a single SVG path whose
-  `stroke-dashoffset` is scrubbed against total page scroll: the page's
-  signature element.
-- **Progress bar** (top edge) — same total-scroll scrub, drives `scaleX`.
+## Experience Highlights
 
-Every scroll animation checks `prefers-reduced-motion` and either skips or
-snaps to an end state instead of animating.
+The site is built around scroll-driven storytelling.
 
-## Replacing the placeholder assets
+### Hero
 
-Nothing here is stock photography — there's no product photo to replace.
-The two things you'll want to swap for a real launch:
+- Animated loading sequence
+- Split-text introduction
+- Background parallax
+- Ambient particle animation
 
-1. **`assets/og-cover.jpg`** — referenced in the `<meta property="og:image">`
-   tag in `index.html` but not included in this delivery. Add a 1200×630
-   share image at that path, or update the tag to point elsewhere.
-2. **The three Lottie JSON files** — hand-authored placeholder animations
-   (a pulsing loader mark, floating hero particles, a node-and-edge network
-   that draws itself in). They're deliberately simple/on-brand so the site
-   works end-to-end today. Drop in real exports from After Effects +
-   Bodymovin at the same paths and same container aspect ratios and
-   everything else (scroll-scrubbing, loop timing) keeps working — just
-   confirm the new file's `op` (frame count) if you hand-tune the scrub math.
+### Manifesto
 
-## Waitlist form
+Words gradually reveal as the user scrolls, creating a reading rhythm that mirrors the narrative.
 
-`js/form.js` validates the email client-side and swaps in a "you're on the
-list" state — there's no backend wired up. Replace the body of the
-`submit` handler with a real request (fetch to your API, a hosted form
-service, etc.) when you're ready to collect real signups.
+### Capabilities
 
-## Performance notes
+A horizontally scrolling pinned section introduces GLIA's four core capabilities:
 
-- Lottie assets are hand-authored shape animations (SVG renderer) — no
-  raster frames, so they stay under ~30KB each.
-- Custom cursor / magnetic buttons / parallax are all gated behind
-  `(hover: hover) and (pointer: fine)` — touch devices get native scrolling
-  and tap behavior with zero extra JS cost.
-- Fonts are loaded via `<link>` with `display=swap` to avoid blocking
-  first paint; consider self-hosting the three weights used
-  (`Space Grotesk 500/600/700`, `Inter 400/500/600`, `IBM Plex Mono 400/500`)
-  for one fewer third-party origin in production.
-- For a production deploy, pin the CDN library versions you ship with
-  (already pinned to explicit version numbers, not `@latest`) and consider
-  self-hosting GSAP/Lenis/lottie-web to remove the CDN as a dependency.
+- Observe
+- Connect
+- Act
+- Govern
+
+### Neural Visualization
+
+The centerpiece of the experience.
+
+A Lottie animation is synchronized directly to scroll progress, allowing users to scrub forward and backward through the visualization frame by frame.
+
+### Device
+
+An animated reveal of GLIA's fictional hardware, enhanced with layered parallax and motion effects.
+
+### Global Motion
+
+- Smooth scrolling
+- Progress indicator
+- Section transitions
+- Scroll-triggered reveals
+- Responsive motion scaling
+- Reduced-motion accessibility support
+
+---
+
+## Performance
+
+The project was designed with performance as a first-class concern.
+
+- Lightweight architecture
+- Vanilla JavaScript
+- GPU-accelerated animations
+- Lazy-loaded animation assets
+- Optimized Lottie files
+- Responsive image loading
+- Mobile-first responsive design
+- Reduced-motion support
+- Minimal layout shifts
+
+---
+
+## Accessibility
+
+The project includes:
+
+- Semantic HTML5
+- Keyboard-friendly navigation
+- ARIA where appropriate
+- Motion reduction support
+- Accessible contrast ratios
+- Screen-reader friendly markup
+
+---
+
+## About GLIA
+
+GLIA is an entirely fictional product concept.
+
+Inspired by **glial cells** in the human nervous system, the idea imagines an AI that works quietly in the background—connecting tools, observing context, and automating small tasks without becoming another application users must constantly interact with.
+
+Rather than replacing people, GLIA represents **support intelligence**, operating invisibly to reduce friction across everyday workflows.
+
+---
+
+## Design Inspiration
+
+The visual language draws inspiration from:
+
+- Apple
+- Stripe
+- Linear
+- Nothing
+- Vercel
+- Framer
+- Awwwards-winning digital experiences
+
+---
+
+## Future Improvements
+
+- Backend-powered waitlist
+- Real authentication
+- Analytics dashboard
+- CMS-powered content
+- Additional Lottie sequences
+- Dark/light theme toggle
+- WebGL visualizations
+- Internationalization
+
+---
+
+## Disclaimer
+
+GLIA is a fictional concept created solely for portfolio and educational purposes.
+
+No company, hardware product, AI platform, or service represented in this repository actually exists.
+
+---
+
+## License
+
+This project is released under the MIT License.
+
+---
