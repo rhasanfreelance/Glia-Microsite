@@ -1,0 +1,57 @@
+/* ==========================================================================
+   GLIA — Responsive layer (mobile-first; this file layers up)
+   ========================================================================== */
+
+/* ---- Small tablet / large phone ---- */
+@media (min-width: 640px){
+  .footer__cols{ grid-template-columns: repeat(4, 1fr); }
+  .stats__grid{ grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ---- Tablet ---- */
+@media (min-width: 820px){
+  .nav__links{ display: flex; }
+  .nav__toggle{ display: none; }
+  .nav__cta{ display: inline-flex; }
+
+  .hero__specs{ display: flex; }
+
+  .device{ grid-template-columns: 1fr 1fr; align-items: center; }
+  .device__head{ order: 0; }
+  .device__stage{ order: 1; margin-inline: 0; }
+
+  .cta__form{ flex-direction: row; }
+  .cta__field{ flex: 1; }
+}
+
+/* ---- Desktop ---- */
+@media (min-width: 1080px){
+  body{ padding-left: var(--rail-w); }
+  .dendrite-rail{ display: block; }
+  .nav{ padding-left: calc(var(--gutter) + var(--rail-w)); }
+
+  .stats__grid{ grid-template-columns: repeat(4, 1fr); }
+
+  .cap-card{ min-height: 460px; }
+}
+
+/* ---- Fine pointer (mouse) — enable custom cursor & magnetic effects ---- */
+@media (hover: hover) and (pointer: fine){
+  .cursor, .cursor-ring{ display: block; }
+  html.has-custom-cursor, html.has-custom-cursor *{ cursor: none !important; }
+}
+
+@media (hover: none), (pointer: coarse){
+  .cursor, .cursor-ring{ display: none !important; }
+}
+
+/* ---- Reduced motion: flatten decorative/parallax layers ---- */
+@media (prefers-reduced-motion: reduce){
+  .hero__ambient, .device__puck::after, .scroll-hint__line::after{ animation: none !important; }
+  .marquee__track{ animation: none !important; }
+}
+
+/* ---- Print (basic courtesy) ---- */
+@media print{
+  .nav, .loader, .cursor, .cursor-ring, .dendrite-rail, .scroll-progress{ display: none !important; }
+}

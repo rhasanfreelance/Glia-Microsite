@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>GLIA — The ambient intelligence layer</title>
+<meta name="description" content="GLIA is the ambient AI layer that watches, connects and acts across your tools — quietly, on-device, always in support. Request early access.">
+<meta name="theme-color" content="#08090b">
+
+<!-- Open Graph -->
+<meta property="og:title" content="GLIA — The ambient intelligence layer">
+<meta property="og:description" content="The mind behind your machines. GLIA observes, connects and acts across your tools — quietly, on-device.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="/assets/og-cover.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='6' fill='%236e7bff'/%3E%3Ccircle cx='16' cy='16' r='13' fill='none' stroke='%23b98cff' stroke-width='1.5' opacity='.5'/%3E%3C/svg%3E">
+
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/sections.css">
+<link rel="stylesheet" href="css/responsive.css">
+
+<!-- JSON-LD structured data for SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "GLIA",
+  "applicationCategory": "AI Assistant",
+  "operatingSystem": "Cross-platform",
+  "description": "GLIA is an ambient AI layer that observes, connects and acts across a person's tools, running on-device."
+}
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ===================== Loading screen ===================== -->
+<div class="loader" id="loader" role="status" aria-live="polite">
+  <div class="loader__mark" id="loaderLottie" aria-hidden="true"></div>
+  <p class="loader__label">Initializing <span id="loaderPct">0%</span></p>
+</div>
+
+<!-- ===================== Custom cursor ===================== -->
+<div class="cursor" id="cursor" aria-hidden="true"></div>
+<div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+
+<!-- ===================== Scroll progress ===================== -->
+<div class="scroll-progress" aria-hidden="true"><div class="scroll-progress__fill" id="progressFill"></div></div>
+
+<!-- ===================== Dendrite signature rail ===================== -->
+<div class="dendrite-rail" aria-hidden="true">
+  <svg viewBox="0 0 64 800" preserveAspectRatio="none">
+    <defs>
+      <linearGradient id="railGradient" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#6e7bff"/>
+        <stop offset="100%" stop-color="#b98cff"/>
+      </linearGradient>
+    </defs>
+    <path class="dendrite-rail__path" d="M32,0 L32,180 L20,220 L32,260 L32,420 L44,460 L32,500 L32,800" pathLength="1000"/>
+    <path class="dendrite-rail__signal" id="railSignal" d="M32,0 L32,180 L20,220 L32,260 L32,420 L44,460 L32,500 L32,800" pathLength="1000"/>
+  </svg>
+</div>
+
+<!-- ===================== Nav ===================== -->
+<header class="nav" id="siteNav">
+  <a href="#top" class="nav__brand">
+    <span class="nav__mark" aria-hidden="true">
+      <svg viewBox="0 0 22 22" width="22" height="22"><circle cx="11" cy="11" r="4" fill="#6e7bff"/><circle cx="11" cy="11" r="9.5" fill="none" stroke="#b98cff" stroke-width="1.2" opacity=".55"/></svg>
+    </span>
+    GLIA
+  </a>
+
+  <nav class="nav__links" aria-label="Primary">
+    <a class="nav__link" data-nav-link href="#product">Product</a>
+    <a class="nav__link" data-nav-link href="#how-it-works">How it works</a>
+    <a class="nav__link" data-nav-link href="#device">Device</a>
+    <a class="nav__link" data-nav-link href="#access">Access</a>
+  </nav>
+
+  <div class="magnetic-wrap nav__cta">
+    <a href="#access" class="btn btn--primary" data-magnetic><span class="btn__ripple" aria-hidden="true"></span>Request access</a>
+  </div>
+
+  <button class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="navMobile" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<nav class="nav__mobile" id="navMobile" aria-label="Mobile">
+  <ul>
+    <li><a href="#product" data-nav-link data-nav-close>Product</a></li>
+    <li><a href="#how-it-works" data-nav-link data-nav-close>How it works</a></li>
+    <li><a href="#device" data-nav-link data-nav-close>Device</a></li>
+    <li><a href="#access" data-nav-link data-nav-close>Access</a></li>
+  </ul>
+</nav>
+
+<main id="main">
+
+  <!-- ===================== Hero ===================== -->
+  <section class="hero" id="top" aria-label="Introduction">
+    <div class="hero__bg" aria-hidden="true"></div>
+    <div class="hero__grid" aria-hidden="true"></div>
+    <div class="hero__ambient" id="ambientLottie" aria-hidden="true"></div>
+
+    <div class="hero__content">
+      <p class="eyebrow hero__eyebrow">Now boarding early access</p>
+      <h1 class="display-xl hero__title" id="heroTitle">
+        <span class="line"><span>The mind</span></span>
+        <span class="line"><span>behind your</span></span>
+        <span class="line"><span class="text-gradient">machines.</span></span>
+      </h1>
+      <p class="body-l hero__sub">
+        GLIA is an ambient reasoning layer that sits quietly between your tools —
+        watching context, wiring connections, and acting on your behalf.
+        No dashboards to babysit. No prompts to write.
+      </p>
+      <div class="hero__actions">
+        <div class="magnetic-wrap">
+          <a href="#access" class="btn btn--primary" data-magnetic><span class="btn__ripple" aria-hidden="true"></span>Request access</a>
+        </div>
+        <div class="magnetic-wrap">
+          <a href="#how-it-works" class="btn btn--ghost" data-magnetic><span class="btn__ripple" aria-hidden="true"></span>See how it thinks</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero__foot">
+      <div class="scroll-hint" aria-hidden="true">
+        <span>Scroll</span>
+        <span class="scroll-hint__line"></span>
+      </div>
+      <dl class="hero__specs">
+        <div><dt>Latency</dt><dd><b>&lt;40ms</b></dd></div>
+        <div><dt>Runs</dt><dd><b>On-device</b></dd></div>
+        <div><dt>Status</dt><dd><b>Private beta</b></dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ===================== Logo marquee ===================== -->
+  <div class="marquee" aria-label="Works alongside">
+    <div class="marquee__track" id="marqueeTrack">
+      <span>Calendars</span><span>Inboxes</span><span>Codebases</span><span>Design files</span>
+      <span>Spreadsheets</span><span>Docs</span><span>Chat threads</span><span>Task boards</span>
+      <span>Calendars</span><span>Inboxes</span><span>Codebases</span><span>Design files</span>
+      <span>Spreadsheets</span><span>Docs</span><span>Chat threads</span><span>Task boards</span>
+    </div>
+  </div>
+
+  <!-- ===================== Manifesto ===================== -->
+  <section class="manifesto" id="product" aria-label="Manifesto">
+    <div class="manifesto__inner">
+      <p class="eyebrow manifesto__label">The idea</p>
+      <p class="display-l manifesto__text" id="manifestoText">
+        Neurons get the credit. Glial cells do the work — feeding, insulating,
+        repairing, so the signal never drops. We built an AI in their image:
+        support intelligence, not spotlight intelligence.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================== Capabilities (horizontal pinned) ===================== -->
+  <section class="capabilities" id="how-it-works" aria-label="Capabilities">
+    <div class="capabilities__pin" id="capPin">
+      <div class="capabilities__head container">
+        <p class="eyebrow">What it actually does</p>
+        <h2 class="display-m" style="margin-top:0.75rem; max-width:16ch;">A few quiet jobs, done constantly.</h2>
+      </div>
+
+      <div class="capabilities__track" id="capTrack">
+        <article class="cap-card glass">
+          <span class="cap-card__index">OBSERVE</span>
+          <span class="cap-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/></svg>
+          </span>
+          <div class="cap-card__body">
+            <h3 class="display-s">Reads context, not messages</h3>
+            <p>GLIA follows what's actually happening across your calendar, threads and files — the situation, not just the words.</p>
+          </div>
+        </article>
+
+        <article class="cap-card glass">
+          <span class="cap-card__index">CONNECT</span>
+          <span class="cap-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="12" cy="18" r="2.5"/><path d="M6 8.5 12 15.5M18 8.5 12 15.5"/></svg>
+          </span>
+          <div class="cap-card__body">
+            <h3 class="display-s">Wires the gaps between tools</h3>
+            <p>It notices when a decision in one app should update another, and closes that loop before you'd think to.</p>
+          </div>
+        </article>
+
+        <article class="cap-card glass">
+          <span class="cap-card__index">ACT</span>
+          <span class="cap-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/></svg>
+          </span>
+          <div class="cap-card__body">
+            <h3 class="display-s">Takes the small actions for you</h3>
+            <p>Reschedules, drafts, files, flags — the two-minute tasks that quietly eat every afternoon, handled before you ask.</p>
+          </div>
+        </article>
+
+        <article class="cap-card glass">
+          <span class="cap-card__index">GOVERN</span>
+          <span class="cap-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg>
+          </span>
+          <div class="cap-card__body">
+            <h3 class="display-s">Shows its work, always</h3>
+            <p>Every action GLIA takes is logged in plain language and reversible in one tap — nothing happens in a black box.</p>
+          </div>
+        </article>
+
+        <div class="cap-card cap-card--pad" aria-hidden="true">
+          <p class="eyebrow">Keep scrolling ↓</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== Neural visualization (pinned, scroll-scrubbed) ===================== -->
+  <section class="visualization" aria-label="How GLIA reasons">
+    <div class="viz__pin" id="vizPin">
+      <div class="viz__stage">
+        <div class="viz__glow" aria-hidden="true"></div>
+        <div class="viz__lottie" id="neuralLottie" role="img" aria-label="Animated diagram of GLIA's reasoning network forming as you scroll"></div>
+        <div class="viz__ticks" aria-hidden="true">
+          <span class="viz__tick" data-tick="0"></span>
+          <span class="viz__tick" data-tick="1"></span>
+          <span class="viz__tick" data-tick="2"></span>
+          <span class="viz__tick" data-tick="3"></span>
+        </div>
+      </div>
+      <div class="viz__caption">
+        <p class="viz__stage-label" id="vizStageLabel">01 · Idle</p>
+        <p class="viz__stage-text" id="vizStageText">A single node, waiting — GLIA stays dormant until context gives it a reason to think.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== Device showcase ===================== -->
+  <section class="device" id="device" aria-label="The device">
+    <div class="device__head">
+      <p class="eyebrow">The presence</p>
+      <h2 class="display-l" style="margin-top:1rem;">One puck. Zero screens.</h2>
+      <p class="body-l">
+        GLIA's optional hardware is a single matte disc that sits on your desk —
+        a quiet indicator light, a far-field mic array, and nothing else to learn.
+        Everything else happens in software, on-device.
+      </p>
+      <ul class="hero__specs" style="display:flex; margin-top:2rem;">
+        <li><span class="eyebrow" style="margin-bottom:.4rem;">Diameter</span><b style="display:block;font-family:var(--font-mono);font-size:1.1rem;">78mm</b></li>
+        <li><span class="eyebrow" style="margin-bottom:.4rem;">Materials</span><b style="display:block;font-family:var(--font-mono);font-size:1.1rem;">Aluminum</b></li>
+        <li><span class="eyebrow" style="margin-bottom:.4rem;">Power</span><b style="display:block;font-family:var(--font-mono);font-size:1.1rem;">Wireless</b></li>
+      </ul>
+    </div>
+
+    <div class="device__stage" id="deviceStage">
+      <div class="device__ring" aria-hidden="true"></div>
+      <div class="device__puck" id="devicePuck" role="img" aria-label="GLIA presence device, a matte aluminum disc with a glowing core"></div>
+
+      <div class="device__chip glass device__chip--1" data-parallax="0.6">
+        <span class="chip__dot" aria-hidden="true"></span> Listening: off by default
+      </div>
+      <div class="device__chip glass device__chip--2" data-parallax="0.9">
+        <span class="chip__dot" aria-hidden="true"></span> 4-mic far-field array
+      </div>
+      <div class="device__chip glass device__chip--3" data-parallax="1.2">
+        <span class="chip__dot" aria-hidden="true"></span> Wireless charging base
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== Stats ===================== -->
+  <section class="stats" aria-label="Numbers">
+    <div class="stats__grid">
+      <div class="stat">
+        <p class="stat__value"><span data-counter="38" data-suffix="ms">0</span></p>
+        <p class="stat__label">Median response latency, entirely on-device</p>
+      </div>
+      <div class="stat">
+        <p class="stat__value"><span data-counter="92" data-suffix="%">0</span></p>
+        <p class="stat__label">Of actions resolved without opening an app</p>
+      </div>
+      <div class="stat">
+        <p class="stat__value"><span data-counter="0" data-suffix=" servers">0</span></p>
+        <p class="stat__label">Your context ever leaves the device to reach</p>
+      </div>
+      <div class="stat">
+        <p class="stat__value"><span data-counter="12" data-suffix="+">0</span></p>
+        <p class="stat__label">Tool categories GLIA already speaks to</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CTA / Access ===================== -->
+  <section class="cta" id="access" aria-label="Request access">
+    <div class="cta__bg" aria-hidden="true"></div>
+    <div class="cta__inner">
+      <p class="eyebrow" style="justify-content:center;">Private beta · rolling invites</p>
+      <h2 class="display-l cta__title">Let it carry the small stuff.</h2>
+      <p class="body-l cta__sub">
+        We're letting people in gradually to keep response times honest.
+        Leave your email and we'll send an invite as capacity opens up.
+      </p>
+      <form class="cta__form" id="accessForm" novalidate>
+        <label class="sr-only" for="accessEmail">Email address</label>
+        <div class="cta__field glass">
+          <input type="email" id="accessEmail" name="email" placeholder="you@company.com" required autocomplete="email">
+        </div>
+        <div class="magnetic-wrap">
+          <button type="submit" class="btn btn--primary" data-magnetic style="width:100%;">
+            <span class="btn__ripple" aria-hidden="true"></span>
+            <span id="accessSubmitLabel">Join the waitlist</span>
+          </button>
+        </div>
+      </form>
+      <p class="cta__note" id="accessNote">No spam. One email when your invite is ready.</p>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== Footer ===================== -->
+<footer class="footer">
+  <div class="footer__top">
+    <a href="#top" class="footer__brand">
+      <span class="footer__mark" aria-hidden="true">
+        <svg viewBox="0 0 22 22" width="22" height="22"><circle cx="11" cy="11" r="4" fill="#6e7bff"/><circle cx="11" cy="11" r="9.5" fill="none" stroke="#b98cff" stroke-width="1.2" opacity=".55"/></svg>
+      </span>
+      GLIA
+    </a>
+    <div class="footer__cols">
+      <div class="footer__col">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="#product">Overview</a></li>
+          <li><a href="#how-it-works">How it works</a></li>
+          <li><a href="#device">Device</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Press</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="#">Security</a></li>
+          <li><a href="#">Docs</a></li>
+          <li><a href="#">Status</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">Terms</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <div class="row">
+      <span>© 2026 GLIA, Inc.</span>
+      <span>Designed &amp; built as a concept microsite.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ===================== Vendor libraries ===================== -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+
+<!-- ===================== App modules ===================== -->
+<script type="module" src="js/main.js"></script>
+
+</body>
+</html>

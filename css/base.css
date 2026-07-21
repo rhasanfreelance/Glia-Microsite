@@ -1,0 +1,223 @@
+/* ==========================================================================
+   GLIA — Base layer
+   Design tokens, reset, typography primitives.
+   Palette: Void/Fog (near-black surfaces), Bone (warm off-white text),
+   Signal (blue-violet) + Synapse (violet) + Glia (green) accents.
+   ========================================================================== */
+
+:root{
+  /* ---- Color tokens ---- */
+  --void:        #08090b;
+  --void-soft:    #0c0e11;
+  --fog:          #14161a;
+  --fog-high:     #1b1e24;
+  --hairline:     rgba(243,241,234,0.09);
+  --hairline-strong: rgba(243,241,234,0.16);
+  --bone:         #f3f1ea;
+  --bone-dim:     rgba(243,241,234,0.68);
+  --ash:          #8a8d93;
+  --ash-dim:      #55585f;
+  --signal:       #6e7bff;
+  --signal-rgb:   110,123,255;
+  --synapse:      #b98cff;
+  --synapse-rgb:  185,140,255;
+  --glia:         #6effc8;
+  --glia-rgb:     110,255,200;
+
+  /* ---- Type ---- */
+  --font-display: 'Space Grotesk', 'Inter', sans-serif;
+  --font-body:    'Inter', -apple-system, sans-serif;
+  --font-mono:    'IBM Plex Mono', ui-monospace, monospace;
+
+  /* ---- Scale ---- */
+  --fs-hero: clamp(3rem, 9vw, 8.5rem);
+  --fs-h1:   clamp(2.25rem, 5.5vw, 4.75rem);
+  --fs-h2:   clamp(1.75rem, 3.4vw, 3rem);
+  --fs-h3:   clamp(1.25rem, 2vw, 1.75rem);
+  --fs-body: clamp(1rem, 1.1vw, 1.125rem);
+  --fs-small: 0.875rem;
+  --fs-eyebrow: 0.8125rem;
+
+  /* ---- Layout ---- */
+  --gutter: clamp(1.25rem, 4vw, 3rem);
+  --rail-w: 64px;
+  --radius-s: 10px;
+  --radius-m: 18px;
+  --radius-l: 28px;
+  --max-w: 1360px;
+
+  /* ---- Motion ---- */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-s: 0.25s;
+  --dur-m: 0.5s;
+  --dur-l: 0.9s;
+}
+
+/* ---- Reset ---- */
+*, *::before, *::after{ box-sizing: border-box; }
+
+html{
+  background: var(--void);
+  color-scheme: dark;
+  scroll-behavior: auto; /* Lenis owns scroll smoothing */
+  -webkit-text-size-adjust: 100%;
+}
+
+body{
+  margin: 0;
+  background: var(--void);
+  color: var(--bone);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.5;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  min-height: 100svh;
+}
+
+img, svg, video, canvas{ display: block; max-width: 100%; }
+
+a{ color: inherit; text-decoration: none; }
+
+ul, ol{ list-style: none; margin: 0; padding: 0; }
+
+button, input{
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+button{ cursor: pointer; }
+
+h1, h2, h3, h4, p, figure{ margin: 0; }
+
+/* Respect reduced motion globally; JS also checks this flag */
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after{
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---- Focus states (accessibility floor) ---- */
+:focus-visible{
+  outline: 2px solid var(--signal);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ---- Selection ---- */
+::selection{
+  background: var(--signal);
+  color: var(--void);
+}
+
+/* ---- Typography primitives ---- */
+.eyebrow{
+  font-family: var(--font-mono);
+  font-size: var(--fs-eyebrow);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ash);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+}
+
+.eyebrow::before{
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--signal);
+  box-shadow: 0 0 8px var(--signal);
+  flex-shrink: 0;
+}
+
+.display-xl{
+  font-family: var(--font-display);
+  font-size: var(--fs-hero);
+  font-weight: 500;
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+}
+
+.display-l{
+  font-family: var(--font-display);
+  font-size: var(--fs-h1);
+  font-weight: 500;
+  line-height: 1.04;
+  letter-spacing: -0.025em;
+}
+
+.display-m{
+  font-family: var(--font-display);
+  font-size: var(--fs-h2);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.display-s{
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.body-l{
+  font-size: clamp(1.05rem, 1.6vw, 1.375rem);
+  line-height: 1.55;
+  color: var(--bone-dim);
+  font-weight: 400;
+}
+
+.mono-num{
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+.text-gradient{
+  background: linear-gradient(100deg, var(--bone) 30%, var(--synapse) 65%, var(--signal) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.sr-only{
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.container{
+  max-width: var(--max-w);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.skip-link{
+  position: fixed;
+  top: -60px;
+  left: 1rem;
+  z-index: 999;
+  background: var(--bone);
+  color: var(--void);
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-s);
+  font-size: var(--fs-small);
+  transition: top var(--dur-s) var(--ease-out);
+}
+
+.skip-link:focus{ top: 1rem; }
